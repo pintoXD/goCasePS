@@ -4,8 +4,8 @@ module Api
     class SurvivorsController < ApplicationController
         #List all survivors, abducted or not.
         def index
-            survivors = Survivor.order('created_at DESC')
-            render json: {status: 'SUCCESS', message:'Survivors database', data:survivors},status: :ok
+            survivors = Survivor.order(:name)
+            render json: {status: 'SUCCESS', message:'Survivors database', data: survivors.as_json(only: [:name, :flag])},status: :ok
         end
 
         #List survivor by id
